@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saait-si <saait-si@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 04:28:45 by saait-si          #+#    #+#             */
-/*   Updated: 2023/12/30 04:58:25 by saait-si         ###   ########.fr       */
+/*   Created: 2023/12/17 21:23:44 by saait-si          #+#    #+#             */
+/*   Updated: 2023/12/30 07:05:52 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+//diri m3akk .macos
 
-int	ft_putnbr(int n)
-{
-	int	len;
-	int	nb;
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-	len = 0;
-	nb = n;
-	if (n >= 0 && n < 10)
-	{
-		len += ft_putchar(nb + '0');
-	}
-	else if (n < 0)
-	{
-		len += ft_putchar('-');
-		len += ft_putnbr(nb * (-1));
-	}
-	else
-	{
-		len += ft_putnbr(nb / 10);
-		len += ft_putnbr(nb % 10);
-	}
-	return (len);
-}
+# include <stdio.h>
+# include <stdarg.h>
+# include <unistd.h>
+
+int	ft_printf(const char *format, ...);
+int	ft_putnbr(int i);
+int	ft_putchar(char c);
+int	ft_putstr(char *str);
+
+#endif

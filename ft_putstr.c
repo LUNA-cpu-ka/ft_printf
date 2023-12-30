@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saait-si <saait-si@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 04:28:45 by saait-si          #+#    #+#             */
-/*   Updated: 2023/12/30 04:58:25 by saait-si         ###   ########.fr       */
+/*   Created: 2023/12/30 06:15:17 by saait-si          #+#    #+#             */
+/*   Updated: 2023/12/30 07:05:12 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_putstr(char *str)
 {
-	int	len;
-	int	nb;
+	int	i;
 
-	len = 0;
-	nb = n;
-	if (n >= 0 && n < 10)
+	i = 0;
+	if (str == NULL)
 	{
-		len += ft_putchar(nb + '0');
+		write(1, "(null)", 6);
+		return (6);
 	}
-	else if (n < 0)
+	while (str[i])
 	{
-		len += ft_putchar('-');
-		len += ft_putnbr(nb * (-1));
+		i++;
 	}
-	else
-	{
-		len += ft_putnbr(nb / 10);
-		len += ft_putnbr(nb % 10);
-	}
-	return (len);
+	write(1, str, i);
+	return (i);
 }
