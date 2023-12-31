@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_lower.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saait-si <saait-si@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 06:15:17 by saait-si          #+#    #+#             */
-/*   Updated: 2023/12/31 05:22:20 by saait-si         ###   ########.fr       */
+/*   Created: 2023/12/31 11:35:03 by saait-si          #+#    #+#             */
+/*   Updated: 2023/12/31 20:18:35 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *str)
+int	ft_lower(unsigned int x)
 {
-	int	i;
+	char	*base;
+	int		len;
 
-	i = 0;
-	if (str == NULL)
+	base = "0123456789abcdef";
+	len = 0;
+	if (x >= 16)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		len += ft_lower(x / 16);
+		len += ft_lower(x % 16);
 	}
-	while (str[i])
-	{
-		i++;
-	}
-	write(1, str, i);
-	return (i);
+	else
+		len += ft_putchar(base[x]);
+	return (len);
 }

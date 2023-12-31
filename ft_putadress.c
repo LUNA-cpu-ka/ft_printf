@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putadress.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saait-si <saait-si@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 06:15:17 by saait-si          #+#    #+#             */
-/*   Updated: 2023/12/31 05:22:20 by saait-si         ###   ########.fr       */
+/*   Created: 2023/12/30 23:15:47 by saait-si          #+#    #+#             */
+/*   Updated: 2023/12/31 11:17:13 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *str)
+int	ft_putadress(unsigned long p)
 {
-	int	i;
+	int		len;
+	char	*base;
 
-	i = 0;
-	if (str == NULL)
+	len = 0;
+	base = "0123456789abcdef";
+	if (p >= 16)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		len += ft_putadress(p / 16);
+		len += ft_putadress(p % 16);
 	}
-	while (str[i])
+	else
 	{
-		i++;
+		len += ft_putchar(base[p]);
 	}
-	write(1, str, i);
-	return (i);
+	return (len);
 }
